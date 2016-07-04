@@ -74,6 +74,7 @@ group :development do
   gem 'capistrano-runit-puma', require: false, github: 'capistrano-runit/puma'
 
 
+
   # better errors
   gem 'better_errors'
   gem 'binding_of_caller', platform: 'ruby'
@@ -99,8 +100,11 @@ group :heroku, :production do
   gem 'rails_12factor', require: ENV.key?("HEROKU")
 end
 
+group :no_docker, :test, :development do
+ gem 'therubyracer', :platform => :ruby # C Ruby (MRI) or Rubinius, but NOT Windows
+end
+
 gem 'puma'
-gem 'therubyracer', platform: :ruby # C Ruby (MRI) or Rubinius, but NOT Windows
 gem 'sass-rails'
 gem 'uglifier'
 # We can't upgrade because not compatible to jquery >= 1.9.
